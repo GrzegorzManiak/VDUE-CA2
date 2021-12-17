@@ -1,5 +1,5 @@
 const pages = {
-    'home': './home.html',
+    'home': './index.html',
     'tips': './tips.html',
     'css': './css.html',
     'html': './html.html',
