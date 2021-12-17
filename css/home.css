@@ -1,0 +1,27 @@
+#splashContent {
+    margin-top: 5rem;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.splashTextContent {
+    padding: 1rem;
+}
+
+.splashTextContent p {
+    margin: 0;
+    padding: 0;
+}
+
+.splashTextContent p b {
+    font-weight: 900;
+    color: var(--font-color);
+    font-size: 2.5rem;
+}
+
+.splashTextContent p b a {
+    color: var(--font-color-light);
+}

@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400&display=swap');
+:root {
+    /* navbar */
+    --nav-bar-height: 4rem;
+    --nav-bar-height-mobile: 4rem;
+    --nav-bar-color: #FAF9F6;
+    --nav-bar-font-color: #22223B;
+    --nav-bar-item-padding: 0.5rem;
+    --nav-bar-max-width: 75rem;
+    /* Gradient */
+    --gradient-angle: 45deg;
+    --gradient-time: 30s;
+    --gradient-1: #ffafbd;
+    --gradient-2: #2193b0;
+    --gradient-3: #cc2b5e;
+    --gradient-4: #de6262;
+    --gradient-5: #56ab2f;
+    /* Header */
+    --header-height-desktop: 16rem;
+    --header-height-tablet: 14rem;
+    --header-height-mobile: 10rem;
+    --header-font-color: #ffffff;
+    /* Footer */
+    --footer-height: 4rem;
+    --footer-color: #ffffff;
+    /* Scrollbar */
+    --scroll-bar-color: #e0e0e0;
+    --scroll-bar-width: 0.5rem;
+    /* Blog */
+    --interactive-background-color: #ececec;
+    --blog-width: 800px;
+    /* General */
+    --font-color: #22223B;
+    --font-color-light: #4659DC;
+    --max-width: 50rem;
+    --body-color: #FAF9F6;
+}
+
+@media screen and (max-width: 450px) {
+    #navElements {
+        display: none;
+    }
+    #hamburgerMenu {
+        display: visible;
+    }
+    #mainContent section {
+        width: 90vw;
+    }
+    nav {
+        /* Sets the height of the nav bar for mobile devices */
+        height: var(--nav-bar-height-mobile);
+    }
+    #header h1 {
+        margin: 0.2rem;
+        padding-top: 2rem;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+     :root {
+        --nav-bar-height-dynamic: var(--nav-bar-height-mobile);
+        --header-height: var(--header-height-mobile);
+    }
+}
+
+@media screen and (min-width: 450px) {
+    #hamburgerMenu {
+        display: none;
+    }
+    nav {
+        /* Sets the height of the nav */
+        height: var(--nav-bar-height);
+    }
+    #mainContent section {
+        width: 80vw;
+    }
+    #navElements {
+        right: 1.8rem;
+    }
+    #header h1 {
+        margin: 1rem;
+        padding-top: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+     :root {
+        --nav-bar-height-dynamic: var(--nav-bar-height);
+        --header-height: var(--header-height-tablet);
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #navElements {
+        right: auto;
+    }
+    #header h1 {
+        padding-top: 0;
+        font-size: xx-large;
+        text-align: left;
+    }
+    #mainContent section {
+        width: 70vw;
+    }
+     :root {
+        --nav-bar-height-dynamic: var(--nav-bar-height);
+        --header-height: var(--header-height-desktop);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Removes the horizontal scroll bar */
+    max-width: 100vw;
+    /*
+        the scroll bar thumb background color
+        makes the page over flow for some reason?
+    */
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.htmlStopScroll {
+    overflow: hidden;
+}
+
+body {
+    /* Sets the font to the best font in the world */
+    font-family: 'Montserrat', sans-serif;
+    /* Sets the display mode to flex */
+    display: flex;
+    /* Removes the margin arround the body */
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--body-color);
+    align-items: center;
+    max-width: 100vw;
+    /*
+        the scroll bar thumb background color
+        makes the page over flow for some reason?
+    */
+    overflow-x: hidden;
+}
+
+#mainContent {
+    min-height: calc(100vh - var(--footer-height));
+    width: 100vw;
+}
+
+#mainContent>section {
+    max-width: var(--max-width)!important;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*
+    Blog posts
+*/
+
+.blog {
+    transition: width 0.2s ease-out;
+    max-width: var(--blog-width);
+}
+
+.blog h1 {
+    margin: 0;
+    padding: 5rem 0 0 0;
+    font-size: 2rem;
+}
+
+.blog img {
+    max-width: var(--blog-width);
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.interactiveSection {
+    gap: 1rem;
+    max-width: var(--blog-width);
+    border-radius: 0.5rem;
+    height: auto;
+    background-color: var(--interactive-background-color);
+    z-index: 1;
+}
+
+
+/*
+    Navigation Bar
+*/
+
+nav {
+    box-sizing: border-box;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* Sets the position to absolute */
+    position: fixed;
+    /* Makes the navbar stick to the top of the page */
+    top: 0;
+    /* Sets the background color */
+    z-index: 200;
+}
+
+div#navLogo {
+    padding: 0 0 0 2rem;
+    position: absolute;
+    left: 0;
+    z-index: 500;
+}
+
+div#navLogo p {
+    transition: color 0.5s ease;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+.logoColorMenuClosed {
+    color: var(--nav-bar-font-color);
+}
+
+.logoColorMenuOpen {
+    color: var(--body-color);
+}
+
+nav>ul {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    /* Removes the dots beside the LI */
+    display: inline;
+    /* Makes the UL horizontal insted of Vertical */
+    float: left;
+    /* Add spacing between LI's */
+    padding: 0 var(--nav-bar-item-padding) 0 var(--nav-bar-item-padding);
+    /* Ease all animations and rule changes */
+    transition: all 0.25s ease;
+    /* Remove the ability to select text */
+    user-select: none;
+    /* make the font bold */
+    font-weight: 400;
+}
+
+
+/* When the user hovers over this LI */
+
+ul li:hover {
+    /* Transform the size of this LI by 1.05 */
+    transform: scale(1.05);
+}
+
+
+/* When the user clicks this LI */
+
+ul li:active {
+    /* Transform the size of this LI by 0.95 */
+    transform: scale(0.95);
+}
+
+.nav-current {
+    /* make the font bolder */
+    font-weight: 900;
+}
+
+
+/* Nav bar header */
+
+nav.overHeader {
+    background-color: #ffffff00;
+}
+
+nav.overHeader li {
+    /* Change font color */
+    color: var(--nav-bar-color);
+}
+
+nav.overHeader>div>p {
+    /* Change font color */
+    color: var(--body-color)!important;
+}
+
+nav.overHeader span {
+    background-color: var(--body-color)!important;
+}
+
+
+/* Nav bar below header  */
+
+nav.belowHeader {
+    background-color: var(--nav-bar-color);
+}
+
+nav.belowHeader li {
+    /* Change font color */
+    color: var(--nav-bar-font-color);
+}
+
+
+/*
+    Hamburger Menu
+*/
+
+#hamburgerBtn {
+    display: grid;
+    height: 1rem;
+    position: absolute;
+    right: calc(var(--nav-bar-height-mobile) / 4);
+    top: calc(var(--nav-bar-height-mobile) / 4);
+}
+
+
+/* There is 3 seperate classes for lines as they all will have diffrent animations */
+
+#hamburgerMenu span {
+    z-index: 255;
+    border-radius: 0.2rem;
+    margin: 0.1rem;
+    width: 2rem;
+    height: 0.3rem;
+    background-color: var(--font-color);
+}
+
+#hamburgerMenuBtn {
+    z-index: 270;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    width: 2rem;
+    height: 2rem;
+}
+
+
+/* First line in the hamburger menu */
+
+#hamburgerMenuBtn:checked~span:nth-child(2) {
+    transform: rotate(45deg) translate(0.5rem, 0.5rem);
+}
+
+
+/* Seccond line in the hamburger menu */
+
+#hamburgerMenuBtn:checked~span:nth-child(3) {
+    transform: scale(0);
+}
+
+
+/* Third line of hamburger menu */
+
+#hamburgerMenuBtn:checked~span:nth-child(4) {
+    transform: rotate(-45deg);
+}
+
+#hamburgerMenuBtn:checked~span {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    margin: 0rem;
+    background-color: var(--body-color);
+}
+
+#hamburgerMenuBtn~span {
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    margin: 0.1rem;
+    transform: rotate(0) translateY(0) scale(1);
+}
+
+#hamburgerContent {
+    top: 0;
+    width: 100vw;
+    z-index: 250;
+    height: 100vh;
+    position: absolute;
+    background-color: var(--nav-bar-font-color);
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.hamburgerContentVisible {
+    left: 0;
+}
+
+.hamburgerContentInvisible {
+    left: 100%;
+}
+
+#hamburgerElements {
+    margin: 5rem 0 0 0;
+    padding-left: 2rem;
+}
+
+#hamburgerElements li {
+    float: none;
+}
+
+#hamburgerElements li p {
+    font-size: 2.5rem;
+    color: var(--body-color);
+    margin: 0.2rem 0 0 0;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#hamburgerElements li p:hover {
+    transform: scale(1.05);
+}
+
+#hamburgerElements li p:active {
+    transform: scale(0.95);
+}
+
+
+/*
+    Footer
+*/
+
+footer {
+    /* soft dropshadow up */
+    box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+footer>div {
+    display: flex;
+    width: 90vw;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sdgfa {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/*
+    Gradient
+*/
+
+.gradient {
+    /* 
+        Creates a gradient that changes horizontaly, 
+        if you were to take a horizontal 1 pixle slice from the bottom
+        and take another horizontal 1 pixle slice from the top of the gradient
+        and compared them, theyd be the same.
+
+        thats why we are putting it at an angle to create more color variation
+    */
+    background: linear-gradient( var(--gradient-angle), var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-4), var(--gradient-5));
+    /*
+        This effect works by making the background of the element massive
+        and moveing the background arround, while only looking at a small part of the 
+        background
+    */
+    background-size: 500%, 500%;
+    animation: gradientTransition var(--gradient-time) infinite;
+}
+
+@keyframes gradientTransition {
+    0% {
+        /* 0--------- start from the left */
+        background-position: 0%, 50%;
+    }
+    50% {
+        /* ---------0 move to the right */
+        background-position: 100%, 50%;
+    }
+    100% {
+        /* 0--------- move back to the left */
+        background-position: 0%, 50%;
+    }
+}
+
+
+/*
+    scroll bar
+*/
+
+::-webkit-scrollbar {
+    width: var(--scroll-bar-width);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-bar-color);
+}
+
+
+/*
+    Header
+*/
+
+#header {
+    transition: height 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* margin-top: var(--nav-bar-height-dynamic); */
+    height: var(--header-height);
+}
+
+#header>h1 {
+    transition: font-size 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: var(--header-font-color);
+}
+
+
+/*
+    General rules used quite often, stops bloat within classes and id's,
+    a poor man's `Tailwind css`
+*/
+
+.flex-vertical-horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-horizontal {
+    display: flex;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    /* Sets the width of the element to the width of the browser window */
+    width: 100vw;
+}
+
+.full-height {
+    /* Sets the height of the element to the height of the browser window */
+    height: 100vh;
+}
+
+.invisible {
+    /* Makes the element invisable */
+    visibility: hidden;
+    /* Sets the position to absolute so it dosent interact with any other element */
+    position: absolute;
+}
+
+.max-width {
+    /* Sets the max width of the element */
+    max-width: var(--max-width);
+}
+
+.text-center {
+    text-align: center;
+    align-self: center;
+    width: 100%;
+}
+
+.margin-top {
+    margin-top: var(--nav-bar-height-dynamic);
+}
